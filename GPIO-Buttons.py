@@ -12,9 +12,15 @@ print "Could not import GPIO"
 # pushbutton connected to this GPIO pin, using pin 5 for the shutdownbutton also has the benefit of
 # waking / powering up Raspberry Pi when button is pressed
 shutdownPin = 5
-nextPin =
-pausePin =
-previousPin =
+nextPin = 36
+pausePin = 38
+previousPin = 40
+
+# if button pressed for at least this long then shut down. if less then reboot.
+shutdownSeconds = 0.5
+rebootdownSeconds = 10
+
+
 
 def connectMPD():
 	try:
