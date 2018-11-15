@@ -16,10 +16,12 @@ nextPin = 36
 pausePin = 38
 previousPin = 40
 
-# if button pressed for at least this long then shut down. if less then reboot.
+# if button pressed for at least this long then shutdown. If Button pressed for at least rebootdownSeconds then Reboot.
 shutdownSeconds = 0.5
 rebootdownSeconds = 10
 
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(shutdownPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 
 def connectMPD():
@@ -34,5 +36,15 @@ def connectMPD():
 	except:
 		print 'Could not connect to MPD server'
 
-    
+def buttonshutdownChanged(pin)
    
+# subscribe to button presses
+GPIO.add_event_detect(shutdownPin, GPIO.BOTH, callback=buttonshutdownChanged)
+GPIO.add_event_detect(nextPin, GPIO.BOTH, callback=buttonnextChanged)
+GPIO.add_event_detect(pausePin, GPIO.BOTH, callback=buttonpauseChanged)
+GPIO.add_event_detect(previousPin, GPIO.BOTH, callback=buttonpreviousChanged)
+
+
+while True:
+    # sleep to reduce unnecessary CPU usage
+time.sleep(5)
