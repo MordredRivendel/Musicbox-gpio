@@ -38,6 +38,25 @@ def connectMPD():
 		print 'Could not connect to MPD server'
 
 def buttonshutdownChanged(pin)
+	call(['shutdown', '-h', 'now'], shell=False)
+	
+	
+def buttonnextChanged(pin)
+	client = connectMPD()
+		client.next()
+	client.close()
+
+def buttonpauseChanged(pin)
+	client = connectMPD()
+		client.pause()
+	client.close()
+
+
+def buttonpreviousChanged(pin)
+	client = connectMPD()
+		client.previous()
+	client.close()
+
    
 # subscribe to button presses
 GPIO.add_event_detect(shutdownPin, GPIO.BOTH, callback=buttonshutdownChanged)
