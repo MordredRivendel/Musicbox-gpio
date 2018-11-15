@@ -21,7 +21,8 @@ shutdownSeconds = 0.5
 rebootdownSeconds = 10
 
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(shutdownPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+chan_list = [shutdownPin, nextPin, pausePin, previousPin]
+GPIO.setup(chan_list, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 
 def connectMPD():
