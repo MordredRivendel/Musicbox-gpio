@@ -24,6 +24,7 @@ GPIO.setmode(GPIO.BOARD)
 chan_list = [shutdownPin, nextPin, pausePin, previousPin]
 GPIO.setup(chan_list, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
+buttonPressedTime = None
 
 def connectMPD():
 	try:
@@ -38,8 +39,24 @@ def connectMPD():
 		print 'Could not connect to MPD server'
 
 def buttonshutdownChanged(pin)
-	call(['shutdown', '-h', 'now'], shell=False)
-	
+	global buttonPressedTime
+
+    if not (GPIO.input(pin)):
+        # button is down
+        if buttonPressedTime is None:
+            buttonPressedTime = datetime.now()
+    else:
+        # button is up
+        if buttonPressedTime is not None:
+            elapsed = (datetime.now() - buttonPressedTime).total_seconds()
+            buttonPressedTime = None
+            if elapsed >= rebootSeconds:
+                # button pressed for more than specified time, reboot
+                call(['shutdown', '-r', 'now'], shell=False)
+		
+            elif elapsed >= shutdownSeconds:
+                # button pressed for a shorter time, shutdown
+		call(['shutdown', '-h', 'now'], shell=False)
 	
 def buttonnextChanged(pin)
 	client = connectMPD()
