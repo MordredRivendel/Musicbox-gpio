@@ -9,6 +9,7 @@ try:
 except ImportError:
 print "Could not import GPIO"
 
+# Change into the GPIO Pins you are jusing
 # pushbutton connected to this GPIO pin, using pin 5 for the shutdownbutton also has the benefit of
 # waking / powering up Raspberry Pi when button is pressed
 shutdownPin = 5
