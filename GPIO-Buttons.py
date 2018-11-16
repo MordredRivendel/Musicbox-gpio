@@ -37,23 +37,22 @@ def connectMPD():
 
 def buttonshutdownChanged(pin)
 	global buttonPressedTime
-
-    if not (GPIO.input(pin)):
+	if not (GPIO.input(pin)):
         # button is down
-        if buttonPressedTime is None:
-            buttonPressedTime = datetime.now()
-    else:
+        	if buttonPressedTime is None:
+            		buttonPressedTime = datetime.now()
+    	else:
         # button is up
         if buttonPressedTime is not None:
-            elapsed = (datetime.now() - buttonPressedTime).total_seconds()
-            buttonPressedTime = None
-            if elapsed >= rebootSeconds:
+        	elapsed = (datetime.now() - buttonPressedTime).total_seconds()
+            	buttonPressedTime = None
+            	if elapsed >= rebootSeconds:
                 # button pressed for more than specified time, reboot
-                call(['shutdown', '-r', 'now'], shell=False)
+                	call(['shutdown', '-r', 'now'], shell=False)
 		
-            elif elapsed >= shutdownSeconds:
+            	elif elapsed >= shutdownSeconds:
                 # button pressed for a shorter time, shutdown
-		call(['shutdown', '-h', 'now'], shell=False)
+			call(['shutdown', '-h', 'now'], shell=False)
 	
 def buttonnextChanged(pin)
 	client = connectMPD()
