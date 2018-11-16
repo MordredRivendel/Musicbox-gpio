@@ -1,11 +1,7 @@
 from mpd import MPDClient
-
-
 import time
-try:
-    import RPi.GPIO as GPIO
-except ImportError:
-print "Could not import GPIO"
+import RPi.GPIO as GPIO
+
 
 # Change into the GPIO Pins you are jusing
 # pushbutton connected to this GPIO pin, using pin 5 for the shutdownbutton also has the benefit of
