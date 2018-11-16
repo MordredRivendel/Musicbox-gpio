@@ -35,7 +35,7 @@ def connectMPD():
 	except:
 		print 'Could not connect to MPD server'
 
-def buttonshutdownChanged(pin)
+def buttonshutdownChanged(pin):
 	global buttonPressedTime
 	if not (GPIO.input(pin)):
         # button is down
@@ -54,18 +54,18 @@ def buttonshutdownChanged(pin)
                 # button pressed for a shorter time, shutdown
 			call(['shutdown', '-h', 'now'], shell=False)
 	
-def buttonnextChanged(pin)
+def buttonnextChanged(pin):
 	client = connectMPD()
 		client.next()
 	client.close()
 
-def buttonpauseChanged(pin)
+def buttonpauseChanged(pin):
 	client = connectMPD()
 		client.pause()
 	client.close()
 
 
-def buttonpreviousChanged(pin)
+def buttonpreviousChanged(pin):
 	client = connectMPD()
 		client.previous()
 	client.close()
