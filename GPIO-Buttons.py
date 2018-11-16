@@ -78,5 +78,5 @@ GPIO.add_event_detect(previousPin, GPIO.BOTH, callback=buttonpreviousChanged)
 
 
 while True:
-    # sleep to reduce unnecessary CPU usage
-time.sleep(5)
+	# sleep to reduce unnecessary CPU usage
+	time.sleep(5)
