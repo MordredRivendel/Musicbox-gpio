@@ -46,7 +46,7 @@ def buttonshutdownChanged(pin):
 	if buttonPressedTime is not None:
 		elapsed = (datetime.now() - buttonPressedTime).total_seconds()
 		buttonPressedTime = None
-		if elapsed >= rebootSeconds:
+		if elapsed >= rebootdownSeconds:
                 # button pressed for more than specified time, reboot
 		call(['shutdown', '-r', 'now'], shell=False)
 		elif elapsed >= shutdownSeconds:
