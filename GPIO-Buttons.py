@@ -56,6 +56,7 @@ def buttonshutdownChanged(pin):
 def buttonnextChanged(pin):
 	client = connectMPD()
 	client.next()
+	client.play()
 	client.close()
 
 def buttonpauseChanged(pin):
@@ -67,6 +68,7 @@ def buttonpauseChanged(pin):
 def buttonpreviousChanged(pin):
 	client = connectMPD()
 	client.previous()
+	client.play()
 	client.close()
 
    
