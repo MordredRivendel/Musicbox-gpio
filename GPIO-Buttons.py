@@ -1,7 +1,5 @@
-try:
-    from mpd import MPDClient
-except ImportError:
-print "Could not import MPDClient"
+from mpd import MPDClient
+
 
 import time
 try:
