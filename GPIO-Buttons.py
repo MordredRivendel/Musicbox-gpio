@@ -43,15 +43,15 @@ def buttonshutdownChanged(pin):
 			buttonPressedTime = datetime.now()
 	else:
         # button is up
-	if buttonPressedTime is not None:
-		elapsed = (datetime.now() - buttonPressedTime).total_seconds()
-		buttonPressedTime = None
-		if elapsed >= rebootdownSeconds:
-                # button pressed for more than specified time, reboot
-		call(['shutdown', '-r', 'now'], shell=False)
-		elif elapsed >= shutdownSeconds:
-                # button pressed for a shorter time, shutdown
-		call(['shutdown', '-h', 'now'], shell=False)
+		if buttonPressedTime is not None:
+			elapsed = (datetime.now() - buttonPressedTime).total_seconds()
+			buttonPressedTime = None
+			if elapsed >= rebootdownSeconds:
+                		# button pressed for more than specified time, reboot
+				call(['shutdown', '-r', 'now'], shell=False)
+			elif elapsed >= shutdownSeconds:
+                		# button pressed for a shorter time, shutdown
+				call(['shutdown', '-h', 'now'], shell=False)
 	
 def buttonnextChanged(pin):
 	client = connectMPD()
