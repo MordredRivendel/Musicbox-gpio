@@ -93,7 +93,9 @@ def buttonpauseChanged(pin):
 			elapsed = (datetime.now() - buttonPressedTime).total_seconds()
 			buttonPressedTime = None
 			print elapsed
-			if elapsed >= pressmin:	
+			print pressmin
+			if elapsed >= pressmin:
+				print "elapsed bigger or equal pressmin"
 				client = connectMPD()
 				client.pause()
 				client.close()
