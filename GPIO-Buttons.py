@@ -44,8 +44,8 @@ def buttonshutdownChanged(pin):
 		if buttonPressedTime is None:
 			buttonPressedTime = datetime.now()
 	else:
-        # button is up
-	print "shutdown up"
+        	# button is up
+		print "shutdown up"
 		if buttonPressedTime is not None:
 			elapsed = (datetime.now() - buttonPressedTime).total_seconds()
 			buttonPressedTime = None
@@ -66,8 +66,8 @@ def buttonnextChanged(pin):
 		if buttonPressedTime is None:
 			buttonPressedTime = datetime.now()
 	else:
-        # button is up
-	print "next up"
+        	# button is up
+		print "next up"
 		if buttonPressedTime is not None:
 			elapsed = (datetime.now() - buttonPressedTime).total_seconds()
 			buttonPressedTime = None
@@ -87,8 +87,8 @@ def buttonpauseChanged(pin):
 		if buttonPressedTime is None:
 			buttonPressedTime = datetime.now()
 	else:
-        # button is up
-	print "pause up"
+        	# button is up
+		print "pause up"
 		if buttonPressedTime is not None:
 			elapsed = (datetime.now() - buttonPressedTime).total_seconds()
 			buttonPressedTime = None
