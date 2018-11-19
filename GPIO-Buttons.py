@@ -40,13 +40,16 @@ def buttonshutdownChanged(pin):
 	global buttonPressedTime
 	if not (GPIO.input(pin)):
 		# button is down
+		print "shutdown down"
 		if buttonPressedTime is None:
 			buttonPressedTime = datetime.now()
 	else:
         # button is up
+	print "shutdown up"
 		if buttonPressedTime is not None:
 			elapsed = (datetime.now() - buttonPressedTime).total_seconds()
 			buttonPressedTime = None
+			print elapsed
 			if elapsed >= rebootdownSeconds:
                 		# button pressed for more than specified time, reboot
 				call(['shutdown', '-r', 'now'], shell=False)
