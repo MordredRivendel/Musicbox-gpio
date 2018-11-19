@@ -80,7 +80,7 @@ def buttonnextChanged(pin):
 
 def buttonpauseChanged(pin):
 
-		global buttonPressedTime
+	global buttonPressedTime
 	if not (GPIO.input(pin)):
 		# button is down
 		print "pause down"
