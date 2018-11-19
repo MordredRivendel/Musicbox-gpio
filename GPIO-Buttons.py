@@ -59,13 +59,16 @@ def buttonnextChanged(pin):
 	global buttonPressedTime
 	if not (GPIO.input(pin)):
 		# button is down
+		print "next down"
 		if buttonPressedTime is None:
 			buttonPressedTime = datetime.now()
 	else:
         # button is up
+	print "next up"
 		if buttonPressedTime is not None:
 			elapsed = (datetime.now() - buttonPressedTime).total_seconds()
 			buttonPressedTime = None
+			print elapsed
 			if elapsed >= pressmin:	
 				client = connectMPD()
 				client.next()
@@ -77,13 +80,16 @@ def buttonpauseChanged(pin):
 		global buttonPressedTime
 	if not (GPIO.input(pin)):
 		# button is down
+		print "pause down"
 		if buttonPressedTime is None:
 			buttonPressedTime = datetime.now()
 	else:
         # button is up
+	print "pause up"
 		if buttonPressedTime is not None:
 			elapsed = (datetime.now() - buttonPressedTime).total_seconds()
 			buttonPressedTime = None
+			print elapsed
 			if elapsed >= pressmin:	
 				client = connectMPD()
 				client.pause()
