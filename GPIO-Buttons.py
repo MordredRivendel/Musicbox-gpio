@@ -100,7 +100,7 @@ def buttonpauseChanged(pin):
 				client.pause()
 				client.close()
 			else:
-				print "nö mach ich nich"
+				print "noe mach ich nich"
 
 
 def buttonpreviousChanged(pin):
