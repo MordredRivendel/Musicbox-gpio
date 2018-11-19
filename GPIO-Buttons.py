@@ -99,6 +99,8 @@ def buttonpauseChanged(pin):
 				client = connectMPD()
 				client.pause()
 				client.close()
+			else:
+				print "nö mach ich nich"
 
 
 def buttonpreviousChanged(pin):
