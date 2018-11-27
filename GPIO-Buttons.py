@@ -9,14 +9,14 @@ from datetime import datetime
 # pushbutton connected to this GPIO pin, using pin 5 for the shutdownbutton also has the benefit of
 # waking / powering up Raspberry Pi when button is pressed
 shutdownPin = 5
-nextPin = 36
+nextPin = 40
 pausePin = 38
-previousPin = 40
+previousPin = 36
 
 # if button pressed for at least this long then shutdown. If Button pressed for at least rebootdownSeconds then Reboot.
-shutdownSeconds = 1
+shutdownSeconds = 0.4
 rebootdownSeconds = 10
-pressmin = 1
+pressmin = 0.4
 
 GPIO.setmode(GPIO.BOARD)
 chan_list = [shutdownPin, nextPin, pausePin, previousPin]
