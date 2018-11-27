@@ -14,9 +14,9 @@ pausePin = 38
 previousPin = 36
 
 # if button pressed for at least this long then shutdown. If Button pressed for at least rebootdownSeconds then Reboot.
-shutdownSeconds = 0.4
-rebootdownSeconds = 10
-pressmin = 0.4
+shutdownSeconds = 0.25
+rebootdownSeconds = 5
+pressmin = 0.25
 
 GPIO.setmode(GPIO.BOARD)
 chan_list = [shutdownPin, nextPin, pausePin, previousPin]
