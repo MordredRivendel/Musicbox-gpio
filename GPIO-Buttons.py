@@ -23,6 +23,7 @@ chan_list = [shutdownPin, nextPin, pausePin, previousPin]
 GPIO.setup(chan_list, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 buttonPressedTime = None
+presstime = None
 
 def connectMPD():
 	try:
