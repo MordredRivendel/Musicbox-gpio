@@ -68,8 +68,9 @@ def buttonnextChanged(pin):
 			buttonPressedTime = datetime.now()
 		#Fast Forward
 		if buttonPressedTime is not None:
-			presstime = (datetime.now() - buttonPressedTime).total_seconds()
-			if presstime>=2:
+			presstime = datetime.now()
+		
+		if (presstime- buttonPressedTime).total_seconds()>=2:
 				client = connectMPD()
 				client.seekcur(+5)
 				time.sleep(0.3)
