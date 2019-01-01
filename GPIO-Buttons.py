@@ -70,15 +70,15 @@ def buttonnextChanged(pin):
 		if buttonPressedTime is not None:
 			presstime = datetime.now()
 		
-		if (presstime- buttonPressedTime).total_seconds()>=2:
-				client = connectMPD()
-				client.seekcur(+5)
-				time.sleep(0.3)
-				presstime=None
+		while buttonPressedTime is not None:
+				if (presstime- buttonPressedTime).total_seconds()>=2:
+					client = connectMPD()
+					client.seekcur(+5)
+					time.sleep(0.3)
 	else:
         	# button is up
 		print "next up"
-		if buttonPressedTime is not None and presstime is None:
+		if buttonPressedTime is not None:
 			elapsed = (datetime.now() - buttonPressedTime).total_seconds()
 			buttonPressedTime = None
 			print elapsed
