@@ -61,26 +61,23 @@ def buttonshutdownChanged(pin):
 def buttonnextChanged(pin):
 
 	global buttonPressedTime
+	global presstime
 	if not (GPIO.input(pin)):
 		# button is down
 		print "next down"
 		if buttonPressedTime is None:
 			buttonPressedTime = datetime.now()
-		#Fast Forward
-		if buttonPressedTime is not None:
+			# Fast Forward
 			presstime = datetime.now()
 		
-		while buttonPressedTime is not None:
-				if (presstime- buttonPressedTime).total_seconds()>=2:
-					client = connectMPD()
-					client.seekcur(+5)
-					time.sleep(0.3)
+		
 	else:
         	# button is up
 		print "next up"
 		if buttonPressedTime is not None:
 			elapsed = (datetime.now() - buttonPressedTime).total_seconds()
 			buttonPressedTime = None
+			presstime = None
 			print elapsed
 			if elapsed >= pressmin:	
 				client = connectMPD()
@@ -141,4 +138,10 @@ GPIO.add_event_detect(previousPin, GPIO.BOTH, callback=buttonpreviousChanged)
 
 while True:
 	# sleep to reduce unnecessary CPU usage
+	global presstime
+	global buttenPressedTime
+	if not (GPIO.input(40)):
+				if (presstime- buttonPressedTime).total_seconds()>=2:
+					client = connectMPD()
+					client.seekcur(+5)
 	time.sleep(5)
