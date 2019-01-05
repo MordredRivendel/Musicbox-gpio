@@ -138,8 +138,6 @@ GPIO.add_event_detect(previousPin, GPIO.BOTH, callback=buttonpreviousChanged)
 
 while True:
 	# sleep to reduce unnecessary CPU usage
-	global presstime
-	global buttenPressedTime
 	if not (GPIO.input(40)):
 				if (presstime- buttonPressedTime).total_seconds()>=2:
 					client = connectMPD()
