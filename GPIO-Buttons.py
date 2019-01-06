@@ -69,6 +69,12 @@ def buttonnextChanged(pin):
 			buttonPressedTime = datetime.now()
 			# Fast Forward
 			presstime = datetime.now()
+		while not (GPIO.input(40)):
+				if (datetime.now() - buttonPressedTime).total_seconds()>=2:
+					client = connectMPD()
+					client.seekcur(+5)
+					client.close()
+					time.sleep(0.3)
 		
 		
 	else:
@@ -138,9 +144,4 @@ GPIO.add_event_detect(previousPin, GPIO.BOTH, callback=buttonpreviousChanged)
 
 while True:
 	# sleep to reduce unnecessary CPU usage
-	if not (GPIO.input(40)):
-				if (datetime.now() - buttonPressedTime).total_seconds()>=2:
-					client = connectMPD()
-					client.seekcur(+5)
-					client.close()
 	time.sleep(5)
