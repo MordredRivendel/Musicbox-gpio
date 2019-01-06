@@ -85,7 +85,9 @@ def buttonnextChanged(pin):
 			buttonPressedTime = None
 			presstime = None
 			print elapsed
-			if elapsed >= pressmin:	
+			if (datetime.now() - buttonPressedTime).total_seconds()>=2:
+				
+			elif elapsed >= pressmin:	
 				client = connectMPD()
 				client.next()
 				client.play()
