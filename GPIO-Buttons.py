@@ -74,7 +74,7 @@ def buttonnextChanged(pin):
 					client = connectMPD()
 					client.seekcur(+5)
 					client.close()
-					time.sleep(0.3)
+					time.sleep(1.5)
 		
 		
 	else:
