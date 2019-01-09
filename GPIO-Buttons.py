@@ -82,9 +82,6 @@ def buttonnextChanged(pin):
 		print "next up"
 		if buttonPressedTime is not None:
 			elapsed = (datetime.now() - buttonPressedTime).total_seconds()
-			buttonPressedTime = None
-			presstime = None
-			print elapsed
 			if (datetime.now() - buttonPressedTime).total_seconds()>=2:
 				time.sleep(0.1)
 				
@@ -96,6 +93,10 @@ def buttonnextChanged(pin):
 				time.sleep(1)
 			else:
 				print "noe mach ich nich"
+			buttonPressedTime = None
+			presstime = None
+			print elapsed
+
 
 def buttonpauseChanged(pin):
 
