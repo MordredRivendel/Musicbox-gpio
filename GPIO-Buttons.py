@@ -9,9 +9,9 @@ from datetime import datetime
 # pushbutton connected to this GPIO pin, using pin 5 for the shutdownbutton also has the benefit of
 # waking / powering up Raspberry Pi when button is pressed
 shutdownPin = 5
-nextPin = 40
+nextPin = 36
 pausePin = 38
-previousPin = 36
+previousPin = 40
 
 # if button pressed for at least this long then shutdown. If Button pressed for at least rebootdownSeconds then Reboot.
 shutdownSeconds = 0.25
@@ -69,7 +69,7 @@ def buttonnextChanged(pin):
 			buttonPressedTime = datetime.now()
 			# Fast Forward
 			presstime = datetime.now()
-		while not (GPIO.input(40)):
+		while not (GPIO.input(pin)):
 				if (datetime.now() - buttonPressedTime).total_seconds()>=2:
 					client = connectMPD()
 					client.seekcur(+5)
@@ -130,16 +130,32 @@ def buttonpreviousChanged(pin):
 		# button is down
 		if buttonPressedTime is None:
 			buttonPressedTime = datetime.now()
+			# Fast Backwards
+			presstime = datetime.now()
+		while not (GPIO.input(pin)):
+				if (datetime.now() - buttonPressedTime).total_seconds()>=2:
+					client = connectMPD()
+					client.seekcur(-5)
+					client.close()
+					time.sleep(1.5)
 	else:
         # button is up
 		if buttonPressedTime is not None:
 			elapsed = (datetime.now() - buttonPressedTime).total_seconds()
-			buttonPressedTime = None
-			if elapsed >= pressmin:	
+			if (datetime.now() - buttonPressedTime).total_seconds()>=2:
+				time.sleep(0.1)
+				
+			elif elapsed >= pressmin:	
 				client = connectMPD()
-				client.previous()
+				client.next()
 				client.play()
 				client.close()
+				time.sleep(1)
+			else:
+				print "noe mach ich nich"
+			buttonPressedTime = None
+			presstime = None
+			print elapsed
 
    
 # subscribe to button presses
