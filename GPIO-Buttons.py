@@ -93,6 +93,7 @@ def buttonnextChanged(pin):
 				client.next()
 				client.play()
 				client.close()
+				time.sleep(1)
 			else:
 				print "noe mach ich nich"
 
