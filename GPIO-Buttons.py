@@ -147,7 +147,7 @@ def buttonpreviousChanged(pin):
 				
 			elif elapsed >= pressmin:	
 				client = connectMPD()
-				client.next()
+				client.previous()
 				client.play()
 				client.close()
 				time.sleep(1)
